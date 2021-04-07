@@ -22,5 +22,36 @@
                 </svg>
             </div>
         </div>
-    </div>
+    </div> {{-- End filters --}}
+
+    <div class="ideas space-y-6 my-6">
+        <div class="idea-container bg-white rounded-xl flex">
+            <div class="border-r border-gray-100 px-5 py-8">
+                <div class="text-center">
+                    <div class="font-semibold text-2xl">12</div>
+                    <div class="text-gray-500">Votes</div>
+                </div>
+                <div class="mt-8">
+                    <button class="w-20 bg-gray-200 border border-gray-200 hover:border-gray-400 font-bold text-xxs uppercase rounded-xl
+                        transition duration-150 ease-in px-4 py-3">
+                        Vote
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex px-2 py-6">
+                <a href="" class="flex-none">
+                    <img src="https://source.unsplash.com/200x200/?face&crop=face&v=1" alt="image-avatar" class="w-14 h-14 rounded-xl">
+                </a>
+                <div class="mx-4">
+                    <h4 class="text-xl font-semibold">
+                        <a href="" class="hover:underline">A random title</a>
+                    </h4>
+                    <div class="text-gray-600 mt-3">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus quisquam id laborum dicta accusamus nostrum ut sed inventore autem quaerat, necessitatibus rem adipisci temporibus eum sint cupiditate, molestiae optio animi. Commodi dolore perferendis vero? Aliquam minus pariatur explicabo ullam doloremque.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> {{-- End ideas --}}
 </x-app-layout>
