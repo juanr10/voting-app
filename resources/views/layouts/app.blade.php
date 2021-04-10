@@ -80,7 +80,7 @@
                                 </svg>
                                 <span class="ml-1">Attach</span>
                             </button>
-                            <button type="submit" class="flex items-center justify-center w-1/2 h-11 bg-blue border border-blue hover:border-white transition duration-150 ease-in rounded-xl font-semibold text-xs text-white px-6 py-3">
+                            <button type="submit" class="flex items-center justify-center w-1/2 h-11 bg-blue border border-blue hover:bg-blue-hover transition duration-150 ease-in rounded-xl font-semibold text-xs text-white px-6 py-3">
                                 <span class="ml-1">Submit</span>
                             </button>
                         </div>
