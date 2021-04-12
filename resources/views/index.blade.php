@@ -25,7 +25,7 @@
     </div> {{-- End filters --}}
 
     <div class="ideas-container space-y-6 my-6">
-        <div class="idea-container flex bg-white hover:shadow-md rounded-xl transition duration-150 ease-in cursor-pointer">
+        <div class="idea-container flex bg-white hover:shadow-lg shadow-md rounded-xl transition duration-150 ease-in cursor-pointer">
             <div class="border-r border-gray-100 px-5 py-8">
                 <div class="text-center">
                     <div class="font-semibold text-2xl">12</div>
@@ -60,15 +60,24 @@
                             <div>&bull;</div>
                             <div class="text-gray-700">Comments</div>
                         </div>
-                        <div class="flex items-center space-x-2">
+                        <div x-data="{ isOpen: false }" class="flex items-center space-x-2">
                             <div class="bg-gray-200 text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">
                                 Open
                             </div>
-                            <button class="relative bg-gray-100 hover:bg-gray-200 border rounded-full h-7 transition duration-150 ease-in py-2 px-3">
+                            <button
+                                @click="isOpen = !isOpen"
+                                class="relative bg-gray-100 hover:bg-gray-200 border rounded-full h-7 transition duration-150 ease-in py-2 px-3"
+                            >
                                 <svg class="h-3 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
                                 </svg>
-                                <ul class="absolute w-44 text-left font-semibold bg-white shadow-lg rounded-xl py-3 ml-8">
+                                <ul
+                                    x-cloak
+                                    x-show.transition.origin.top.left="isOpen"
+                                    @click.away="isOpen = false"
+                                    @keydown.escape.window="isOpen = false"
+                                    class="absolute w-44 text-left font-semibold bg-white shadow-lg rounded-xl py-3 ml-8"
+                                >
                                     <li>
                                         <a class="hover:bg-gray-100 block text-xs transition duration-150 ease-in  px-5 py-3" href="">Mark as spam</a>
                                     </li>
@@ -84,7 +93,7 @@
         </div>
 
 
-        <div class="idea-container flex bg-white hover:shadow-md rounded-xl transition duration-150 ease-in cursor-pointer">
+        <div class="idea-container flex bg-white hover:shadow-lg shadow-md rounded-xl transition duration-150 ease-in cursor-pointer">
             <div class="border-r border-gray-100 px-5 py-8">
                 <div class="text-center">
                     <div class="font-semibold text-2xl text-blue">12</div>
@@ -141,7 +150,7 @@
         </div>
 
 
-        <div class="idea-container flex bg-white hover:shadow-md rounded-xl transition duration-150 ease-in cursor-pointer">
+        <div class="idea-container flex bg-white hover:shadow-lg shadow-md rounded-xl transition duration-150 ease-in cursor-pointer">
             <div class="border-r border-gray-100 px-5 py-8">
                 <div class="text-center">
                     <div class="font-semibold text-2xl">12</div>

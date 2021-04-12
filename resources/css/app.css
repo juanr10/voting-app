@@ -2,6 +2,11 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+/* alpine.js */
+[x-cloak] {
+    display: none !important;
+}
+
 /* vertical line to le  left of comments container */
 .comments-container::before{
     position: absolute;
