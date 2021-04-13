@@ -1,20 +1,20 @@
 <x-app-layout>
-    <div class="filters flex space-x-6">
-        <div class="w-1/3">
+    <div class="filters flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-6">
+        <div class="w-full md:w-1/3">
             <select name="category" id="category" class="w-full rounded-xl border-none px-4 py-2">
                 <option value="1">Category one</option>
                 <option value="1">Category two</option>
                 <option value="1">Category three</option>
             </select>
         </div>
-        <div class="w-1/3">
+        <div class="w-full md:w-1/3">
             <select name="category" id="category" class="w-full rounded-xl border-none px-4 py-2">
                 <option value="1">Category one</option>
                 <option value="1">Category two</option>
                 <option value="1">Category three</option>
             </select>
         </div>
-        <div class="w-2/3 relative">
+        <div class="w-full md:w-2/3 relative">
             <input type="search" placeholder="Find an idea" class="w-full rounded-xl bg-white border-none px-4 py-2 pl-8 placeholder-gray-700">
             <div class="absolute top-0 flex items-center h-full ml-2">
                 <svg class="w-4 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -111,7 +111,7 @@
                 <a href="" class="flex-none">
                     <img src="https://source.unsplash.com/200x200/?face&crop=face2&v=1" alt="image-avatar" class="w-14 h-14 rounded-xl">
                 </a>
-                <div class="w-full mx-4">
+                <div class="w-full flex flex-col justify-between mx-4">
                     <h4 class="text-xl font-semibold">
                         <a href="" class="hover:underline">A random title</a>
                     </h4>
