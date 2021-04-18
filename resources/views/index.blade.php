@@ -76,7 +76,7 @@
                                     x-show.transition.origin.top.left="isOpen"
                                     @click.away="isOpen = false"
                                     @keydown.escape.window="isOpen = false"
-                                    class="absolute w-44 text-left font-semibold bg-white shadow-lg rounded-xl py-3 ml-8"
+                                    class="absolute w-44 text-left font-semibold bg-white shadow-lg rounded-xl z-10 py-3 ml-8"
                                 >
                                     <li>
                                         <a class="hover:bg-gray-100 block text-xs transition duration-150 ease-in  px-5 py-3" href="">Mark as spam</a>

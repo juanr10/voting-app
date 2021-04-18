@@ -7,30 +7,30 @@
     </a>
 
     <div class="idea-container flex bg-white hover:shadow-lg rounded-xl transition duration-150 ease-in cursor-pointer mt-6 shadow-md">
-        <div class="flex flex-1 px-4 py-6">
-            <div class="flex-none">
+        <div class="flex flex-col md:flex-row flex-1 px-4 py-6">
+            <div class="flex-none md:ml-3">
                 <a href="#image">
                     <img src="https://source.unsplash.com/200x200/?face&crop=face1&v=1" alt="image-avatar" class="w-14 h-14 rounded-xl">
                 </a>
             </div>
-            <div class="w-full mx-4">
-                <h4 class="text-xl font-semibold">
+            <div class="w-full md:mx-4">
+                <h4 class="text-xl font-semibold mt-2 md:mt-0">
                     <a href="" class="hover:underline">A random title</a>
                 </h4>
                 <div class="text-gray-600 text-justify mt-3">
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem placeat aliquam ipsam atque quisquam unde itaque consectetur corporis, repudiandae molestiae porro numquam enim ipsum cupiditate nam et eveniet modi excepturi dolore. Laborum perferendis voluptatum hic, vero odit possimus odio at!
                 </div>
-                <div class="flex items-center justify-between mt-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mt-6">
                     <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
-                        <div class="text-gray-900 font-bold">John doe</div>
-                        <div>&bull;</div>
+                        <div class="hidden md:block text-gray-900 font-bold">John doe</div>
+                        <div class="hidden md:block">&bull;</div>
                         <div>10 hours ago</div>
                         <div>&bull;</div>
                         <div>Category 1</div>
                         <div>&bull;</div>
                         <div class="text-gray-700">Comments</div>
                     </div>
-                    <div x-data="{ isOpen: false }" class="flex items-center space-x-2">
+                    <div x-data="{ isOpen: false }" class="flex items-center space-x-2 mt-4 md:mt-0">
                         <div class="bg-gray-200 text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">
                             Open
                         </div>
@@ -46,7 +46,7 @@
                                 x-show.transition.origin.top.left="isOpen"
                                 @click.away="isOpen = false"
                                 @keydown.escape.window="isOpen = false"
-                                class="absolute w-44 text-left font-semibold bg-white shadow-lg rounded-xl py-3 ml-8"
+                                class="absolute w-44 text-left font-semibold bg-white shadow-lg rounded-xl z-10 py-3 ml-8"
                             >
                                 <li>
                                     <a class="hover:bg-gray-100 block text-xs transition duration-150 ease-in  px-5 py-3" href="">Mark as spam</a>
@@ -57,13 +57,22 @@
                             </ul>
                         </button>
                     </div>
+                    <div class="flex items-center md:hidden mt-4 md:mt-0">
+                        <div class="bg-gray-100 text-center rounded-xl h-10 px-4 py-2 pr-8">
+                            <div class="text-sm font-bold leading-none">12</div>
+                            <div class="text-xxs font-semibold leading-none text-gray-400">Votes</div>
+                        </div>
+                        <button class="w-20 bg-gray-200 border border-gray-200 font-bold text-xxs uppercase rounded-xl hover:border-gray-400 transition duration-150 ease-in px-4 py-3 -mx-5">
+                            Vote
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="buttons-container flex items-center justify-between mt-6">
-        <div class="flex items-center space-x-4 ml-6">
+        <div class="flex flex-row items-center space-x-6 md:space-x-4 md:ml-6">
             <div x-data="{ isOpen: false }" class="relative">
                 <button
                     @click="isOpen = !isOpen"
@@ -77,7 +86,7 @@
                     x-show.transition.origin.top.left="isOpen"
                     @click.away="isOpen = false"
                     @keydown.escape.window="isOpen = false"
-                    class="absolute z-10 w-104 text-left font-semibold text-sm bg-white shadow-lg rounded-xl mt-2"
+                    class="absolute z-10 w-76 md:w-104 text-left font-semibold text-sm bg-white shadow-lg rounded-xl mt-2"
                 >
                     <form action="#" class="space-y-4 px-4 py-6">
                         <div>
@@ -106,7 +115,7 @@
                 <button
                     @click="isOpen = !isOpen"
                     type="button"
-                    class="flex items-center justify-center h-11 bg-gray-200 border border-gray-200 hover:border-gray-400 transition duration-150 ease-in rounded-xl focus:outline-none focus:ring-2 focus:ring-blue focus:border-transparent font-semibold text-xs px-6 py-3"
+                    class="flex items-center justify-center w-36 h-11 bg-gray-200 border border-gray-200 hover:border-gray-400 transition duration-150 ease-in rounded-xl focus:outline-none focus:ring-2 focus:ring-blue focus:border-transparent font-semibold text-xs px-6 py-3"
                 >
                     <span class="mr-1">Set Status</span>
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -118,7 +127,7 @@
                     x-show.transition.origin.top.left="isOpen"
                     @click.away="isOpen = false"
                     @keydown.escape.window="isOpen = false"
-                    class="absolute z-20 w-76 text-left font-semibold text-sm bg-white shadow-lg rounded-xl mt-2"
+                    class="absolute z-20 w-76 text-left font-semibold text-sm bg-white shadow-lg rounded-xl mt-2 md:ml-0 top-11 md:top-11 right-0 md:left-0"
                 >
                     <form action="#" class="space-y-4 px-4 py-6">
                         <div class="space-y-2">
@@ -187,7 +196,7 @@
             </div>
         </div>
 
-        <div class="flex items-center space-x-3">
+        <div class="hidden md:flex items-center space-x-3">
             <div class="bg-white font semibold text-center rounded-xl px-3 py-2">
                 <div class="text-xl leading-snug">12</div>
                 <div class="text-gray-400 text xs leading-none">Votes</div>
@@ -198,15 +207,15 @@
         </div>
     </div>
 
-    <div class="comments-container relative space-y-6 ml-22 my-8 mt-1 pt-6">
-        <div class="comment-container relative flex bg-white hover:shadow-lg shadow-md rounded-xl transition duration-150 ease-in cursor-pointer mt-6">
-            <div class="flex flex-1 px-4 py-6">
+    <div class="comments-container relative space-y-6 md:ml-22 my-8 mt-1 pt-6">
+        <div class="comment-container relative flex bg-white hover:shadow-lg shadow-md rounded-xl transition duration-150 ease-in cursor-pointer md:mt-6">
+            <div class="flex flex-col md:flex-row flex-1 px-4 py-6">
                 <div class="flex-none">
                     <a href="#image">
                         <img src="https://source.unsplash.com/200x200/?face&crop=face2&v=1" alt="image-avatar" class="w-14 h-14 rounded-xl">
                     </a>
                 </div>
-                <div class="w-full mx-4">
+                <div class="w-full md:mx-4">
                     <div class="text-gray-600 text-justify mt-3">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     </div>
@@ -229,7 +238,7 @@
                                     x-show.transition.origin.top.left="isOpen"
                                     @click.away="isOpen = false"
                                     @keydown.escape.window="isOpen = false"
-                                    class="absolute w-44 text-left font-semibold bg-white shadow-lg rounded-xl py-3 ml-8"
+                                    class="absolute w-44 text-left font-semibold bg-white shadow-lg rounded-xl py-3 md:ml-8 top-8 md:top-6 right-0 md:left-0"
                                 >
                                     <li>
                                         <a class="hover:bg-gray-100 block text-xs transition duration-150 ease-in  px-5 py-3" href="">Mark as spam</a>
@@ -266,12 +275,21 @@
                             <div>&bull;</div>
                             <div>10 hours ago</div>
                         </div>
-                        <div class="flex items-center space-x-2 z-10">
-                            <button class="relative bg-gray-100 hover:bg-gray-200 border rounded-full h-7 transition duration-150 ease-in py-2 px-3">
+                        <div x-data="{ isOpen: false }" class="flex items-center space-x-2 z-10">
+                            <button
+                                @click="isOpen = !isOpen"
+                                class="relative bg-gray-100 hover:bg-gray-200 border rounded-full h-7 transition duration-150 ease-in focus:outline-none focus:ring-2 focus:ring-blue focus:border-transparent py-2 px-3"
+                            >
                                 <svg class="h-3 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
                                 </svg>
-                                <ul class="absolute w-44 text-left font-semibold bg-white shadow-lg rounded-xl py-3 ml-8">
+                                <ul
+                                    x-cloak
+                                    x-show.transition.origin.top.left="isOpen"
+                                    @click.away="isOpen = false"
+                                    @keydown.escape.window="isOpen = false"
+                                    class="absolute w-44 text-left font-semibold bg-white shadow-lg rounded-xl py-3 md:ml-8 top-8 md:top-6 right-0 md:left-0"
+                                >
                                     <li>
                                         <a class="hover:bg-gray-100 block text-xs transition duration-150 ease-in  px-5 py-3" href="">Mark as spam</a>
                                     </li>
@@ -286,14 +304,14 @@
             </div>
         </div>
 
-        <div class="comment-container relative flex bg-white hover:shadow-lg shadow-md rounded-xl transition duration-150 ease-in cursor-pointer mt-6">
-            <div class="flex flex-1 px-4 py-6">
+        <div class="comment-container relative flex bg-white hover:shadow-lg shadow-md rounded-xl transition duration-150 ease-in cursor-pointer md:mt-6">
+            <div class="flex flex-col md:flex-row flex-1 px-4 py-6">
                 <div class="flex-none">
                     <a href="#image">
-                        <img src="https://source.unsplash.com/200x200/?face&crop=face4&v=1" alt="image-avatar" class="w-14 h-14 rounded-xl">
+                        <img src="https://source.unsplash.com/200x200/?face&crop=face2&v=1" alt="image-avatar" class="w-14 h-14 rounded-xl">
                     </a>
                 </div>
-                <div class="w-full mx-4">
+                <div class="w-full md:mx-4">
                     <div class="text-gray-600 text-justify mt-3">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     </div>
@@ -303,12 +321,21 @@
                             <div>&bull;</div>
                             <div>10 hours ago</div>
                         </div>
-                        <div class="flex items-center space-x-2 z-10">
-                            <button class="relative bg-gray-100 hover:bg-gray-200 border rounded-full h-7 transition duration-150 ease-in py-2 px-3">
+                        <div x-data="{ isOpen: false }" class="flex items-center space-x-2 z-10">
+                            <button
+                                @click="isOpen = !isOpen"
+                                class="relative bg-gray-100 hover:bg-gray-200 border rounded-full h-7 transition duration-150 ease-in focus:outline-none focus:ring-2 focus:ring-blue focus:border-transparent py-2 px-3"
+                            >
                                 <svg class="h-3 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
                                 </svg>
-                                <ul class="absolute w-44 text-left font-semibold bg-white shadow-lg rounded-xl py-3 ml-8">
+                                <ul
+                                    x-cloak
+                                    x-show.transition.origin.top.left="isOpen"
+                                    @click.away="isOpen = false"
+                                    @keydown.escape.window="isOpen = false"
+                                    class="absolute w-44 text-left font-semibold bg-white shadow-lg rounded-xl py-3 md:ml-8 top-8 md:top-6 right-0 md:left-0"
+                                >
                                     <li>
                                         <a class="hover:bg-gray-100 block text-xs transition duration-150 ease-in  px-5 py-3" href="">Mark as spam</a>
                                     </li>
