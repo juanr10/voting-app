@@ -10,7 +10,7 @@
         <div class="flex flex-col md:flex-row flex-1 px-4 py-6">
             <div class="flex-none md:ml-3">
                 <a href="#image">
-                    <img src="https://source.unsplash.com/200x200/?face&crop=face1&v=1" alt="image-avatar" class="w-14 h-14 rounded-xl">
+                    <img src="{{ $idea->user->getAvatar() }}" alt="image-avatar" class="w-14 h-14 rounded-xl">
                 </a>
             </div>
             <div class="w-full md:mx-4">
