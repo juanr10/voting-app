@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\Idea;
+use App\Models\Status;
+use App\Models\Category;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -11,17 +13,30 @@ class ShowIdeasTest extends TestCase
 {
     use RefreshDatabase;
 
+    //TODO -> test seeing categories & statuses
+    //TODO -> refactor idea factory
+
     /** @test */
     public function list_of_ideas_shows_on_main_page()
     {
+        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
+        $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
+
+        $statusOpen = Status::factory()->create(['name' => 'Open']);
+        $statusConsidering = Status::factory()->create(['name' => 'Considering']);
+
         $ideaOne = Idea::factory()->create([
             'title' => 'My First Idea',
             'description' => 'Description of my first idea',
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusOpen->id,
         ]);
 
         $ideaTwo = Idea::factory()->create([
             'title' => 'My Second Idea',
             'description' => 'Description of my second idea',
+            'category_id' => $categoryTwo->id,
+            'status_id' => $statusConsidering->id,
         ]);
 
         $response = $this->get(route('idea.index'));
@@ -36,9 +51,14 @@ class ShowIdeasTest extends TestCase
     /** @test */
     public function single_idea_shows_correctly_on_the_show_page()
     {
+        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
+        $statusOpen = Status::factory()->create(['name' => 'Open']);
+
         $idea = Idea::factory()->create([
             'title' => 'My First Idea',
             'description' => 'Description of my first idea',
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusOpen->id,
         ]);
 
         $response = $this->get(route('idea.show', $idea));
@@ -51,11 +71,18 @@ class ShowIdeasTest extends TestCase
     /** @test */
     public function same_idea_title_different_slugs()
     {
+        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
+        $statusOpen = Status::factory()->create(['name' => 'Open']);
+
         $ideaOne = Idea::factory()->create([
             'title' => 'My First Idea',
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusOpen->id,
         ]);
         $ideaTwo = Idea::factory()->create([
             'title' => 'My First Idea',
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusOpen->id,
         ]);
 
         $this->assertEquals('my-first-idea', $ideaOne->slug);
