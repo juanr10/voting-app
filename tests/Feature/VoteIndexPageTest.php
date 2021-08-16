@@ -122,11 +122,123 @@ class VoteIndexPageTest extends TestCase
         $ideaWithVotes = $response['ideas']->items()[0];
 
         Livewire::actingAs($user)
-        ->test(IdeaIndex::class, [
-            'idea' => $ideaWithVotes,
+            ->test(IdeaIndex::class, [
+                'idea' => $ideaWithVotes,
+                'votesCount' => 5
+            ])
+            ->assertSet('hasVoted', true)
+            ->assertSee('Voted');
+    }
+
+    /** @test */
+    function user_who_is_not_logged_in_is_redirected_to_login_page_when_trying_to_vote()
+    {
+        $user = User::factory()->create();
+
+        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
+
+        $statusOpen = Status::factory()->create(['name' => 'Open']);
+
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'title' => 'My First Idea',
+            'description' => 'Description of my first idea',
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusOpen->id,
+        ]);
+
+        Livewire::test(IdeaIndex::class, [
+            'idea' => $idea,
             'votesCount' => 5
         ])
-        ->assertSet('hasVoted', true)
-        ->assertSee('Voted');
+            ->call('vote')
+            ->assertRedirect(route('login'));
+    }
+
+    /** @test */
+    function user_can_vote_for_idea()
+    {
+        $user = User::factory()->create();
+
+        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
+
+        $statusOpen = Status::factory()->create(['name' => 'Open']);
+
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'title' => 'My First Idea',
+            'description' => 'Description of my first idea',
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusOpen->id,
+        ]);
+
+        $this->assertFalse($idea->isVotedByUser($user));
+        $idea->vote($user);
+        $this->assertTrue($idea->isVotedByUser($user));
+    }
+
+    /** @test */
+    function user_can_remove_vote_for_idea()
+    {
+        $user = User::factory()->create();
+
+        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
+
+        $statusOpen = Status::factory()->create(['name' => 'Open']);
+
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'title' => 'My First Idea',
+            'description' => 'Description of my first idea',
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusOpen->id,
+        ]);
+
+        Vote::factory()->create([
+            'idea_id' => $idea->id,
+            'user_id' => $user->id,
+        ]);
+
+        $this->assertTrue($idea->isVotedByUser($user));
+        $idea->removeVote($user);
+        $this->assertFalse($idea->isVotedByUser($user));
+    }
+
+    /** @test */
+    function user_who_is_logged_in_can_vote_for_idea()
+    {
+        $user = User::factory()->create();
+
+        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
+
+        $statusOpen = Status::factory()->create(['name' => 'Open']);
+
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'title' => 'My First Idea',
+            'description' => 'Description of my first idea',
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusOpen->id,
+        ]);
+
+        $this->assertDatabaseMissing('votes', [
+            'user_id' => $user->id,
+            'idea_id' => $idea->id,
+        ]);
+
+        Livewire::actingAs($user)
+            ->test(IdeaIndex::class, [
+                'idea' => $idea,
+                'votesCount' => 5
+            ])
+            ->call('vote')
+            ->assertSet('votesCount', 6)
+            ->assertSet('hasVoted', true)
+            ->assertSee('Voted');
+
+        $this->assertDatabaseHas('votes', [
+            'user_id' => $user->id,
+            'idea_id' => $idea->id,
+        ]);
     }
 }
