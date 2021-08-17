@@ -24,12 +24,12 @@ class IdeaIndex extends Component
             return redirect(route('login'));
         }
 
+        $this->idea->toggleVote(auth()->user());
+
         if ($this->hasVoted) {
-            $this->idea->removeVote(auth()->user());
             $this->hasVoted = false;
             $this->votesCount--;
         } else {
-            $this->idea->vote(auth()->user());
             $this->hasVoted = true;
             $this->votesCount++;
         }

@@ -26,12 +26,12 @@ class IdeaShow extends Component
 
         //TODO-> add cache layer to pass votes to the database (high currency)
 
+        $this->idea->toggleVote(auth()->user());
+
         if ($this->hasVoted) {
-            $this->idea->removeVote(auth()->user());
             $this->hasVoted = false;
             $this->votesCount--;
         } else {
-            $this->idea->vote(auth()->user());
             $this->hasVoted = true;
             $this->votesCount++;
         }

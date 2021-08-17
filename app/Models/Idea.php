@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
+use App\Exceptions\VoteNotFoundException;
+use App\Exceptions\DuplicateVoteException;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class Idea extends Model
 {
@@ -46,19 +48,10 @@ class Idea extends Model
         return $this->belongsToMany(User::class, 'votes');
     }
 
-    public function vote(User $user)
+    public function toggleVote(User $user)
     {
-        Vote::create([
-            'idea_id' => $this->id,
-            'user_id' => $user->id,
-        ]);
-    }
-
-    public function removeVote(User $user)
-    {
-        Vote::where('idea_id', $this->id)
-            ->where('user_id', $user->id)
-            ->delete();
+        $this->isVotedByUser($user) ?
+            $this->votes()->detach($user) : $this->votes()->attach($user);
     }
 
     public function isVotedByUser(?User $user)

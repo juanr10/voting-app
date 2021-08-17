@@ -62,7 +62,7 @@ class IdeaTest extends TestCase
         ]);
 
         $this->assertFalse($idea->isVotedByUser($user));
-        $idea->vote($user);
+        $idea->toggleVote($user);
         $this->assertTrue($idea->isVotedByUser($user));
     }
 
@@ -89,7 +89,7 @@ class IdeaTest extends TestCase
         ]);
 
         $this->assertTrue($idea->isVotedByUser($user));
-        $idea->removeVote($user);
+        $idea->toggleVote($user);
         $this->assertFalse($idea->isVotedByUser($user));
     }
 }
