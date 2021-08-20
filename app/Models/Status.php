@@ -27,4 +27,18 @@ class Status extends Model
 
         return $classes;
     }
+
+
+    public static function getCount()
+    {
+        return Idea::query()
+            ->selectRaw("count(*) as all_statuses")
+            ->selectRaw("sum(`status_id` = 1) as open")
+            ->selectRaw("sum(`status_id` = 2) as considering")
+            ->selectRaw("sum(`status_id` = 3) as in_progress")
+            ->selectRaw("sum(`status_id` = 4) as implemented")
+            ->selectRaw("sum(`status_id` = 5) as closed")
+            ->first()
+            ->toArray();
+    }
 }
